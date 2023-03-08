@@ -10,6 +10,7 @@ export default function Producto() {
 
   const paperStyle={padding: '50px 20px', width:1000, margin:"20px auto"}
   const[nombre, setNombre]=useState('')
+  const[codigoEan, setCodigoEan]=useState('')
   const[descripcion, setDescripcion]=useState('')
   const[marca, setMarca]=useState('')
   const[imagen, setImagen]=useState('')
@@ -20,7 +21,7 @@ export default function Producto() {
 
   const handleClick=(e)=>{
     e.preventDefault()
-    const producto={nombre,descripcion,marca,imagen,unitDispo}
+    const producto={nombre,codigoEan,descripcion,marca,imagen,unitDispo}
     console.log(producto)
     fetch("http://localhost:8080/api/v1/productos",{
       method:"POST",
@@ -58,6 +59,11 @@ export default function Producto() {
         onChange={(e)=>setNombre(e.target.value)}
         />
 
+        <TextField id="outlined-basic" label="Codigo EAN del producto" variable="outlined" fullWidth
+        value={codigoEan}
+        onChange={(e)=>setCodigoEan(e.target.value)}
+        />
+
         <TextField id="outlined-basic" label="Descripcion del producto" variable="outlined" fullWidth
         value={descripcion}
         onChange={(e)=>setDescripcion(e.target.value)}
@@ -81,12 +87,13 @@ export default function Producto() {
         <Button variant='contained' onClick={handleClick}>Crear el producto</Button>
       </Box>
       </Paper>
-        <h1>productos</h1>
+        <h1>Productos</h1>
       <Paper elevation={3} style={paperStyle}>
         {productos.map(producto=>(
           <Paper elevation={6} style={{margin:'10px',padding:'15px',textAlign:'left'}} key={producto.codigo}>
               Codigo:{producto.codigo}<br/>
               Nombre={producto.nombre}<br/>
+              Codigo EAN={producto.codigoEan}<br/>
               Descripcion={producto.descripcion}<br/>
               Marca={producto.marca}<br/>
               Imagen={producto.imagen}<br/>
