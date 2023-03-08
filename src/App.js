@@ -1,14 +1,13 @@
 
 import './App.css';
 import Appbar from './components/Appbar'
-import Student from './components/Student'
+import Producto from './components/Producto'
 
 function App() {
   return (
     <div className="App">
     <Appbar/>
-    <Student/>
-   
+  
     </div>
   );
 }
